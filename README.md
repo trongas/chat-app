@@ -46,21 +46,5 @@
   <!-- Add more tools and languages as needed -->
 </p>
 
-<h3 align="left">My GitHub Stats:</h3>
-<p align="center">
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=radical" alt="your-github-username" />
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=your-github-username&layout=compact&theme=radical" alt="your-github-username" />
-</p>
-
-<h3 align="left">Featured Projects:</h3>
-<p align="left">
-  <a href="https://github.com/your-github-username/project-1" target="_blank">
-    <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=your-github-username&repo=project-1&theme=radical" alt="project-1" />
-  </a>
-  <a href="https://github.com/your-github-username/project-2" target="_blank">
-    <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=your-github-username&repo=project-2&theme=radical" alt="project-2" />
-  </a>
-</p>
-
 <h3 align="left">Support:</h3>
 <p><a href="https://www.buymeacoffee.com/your-profile"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="Buy me a coffee" /></a></p>
