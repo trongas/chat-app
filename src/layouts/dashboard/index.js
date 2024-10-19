@@ -11,7 +11,7 @@ import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   const theme = useTheme();
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
 
   return (
@@ -39,6 +39,9 @@ const DashboardLayout = () => {
                 width: 64,
                 borderRadius: 1.5,
                 mb: 4,
+                display: 'flex', // Center the logo
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <img src={Logo} alt="Chat App Logo" />
@@ -126,7 +129,7 @@ const DashboardLayout = () => {
       </Box>
 
       {/* Main Content */}
-      <Stack sx={{ flexGrow: 1, p: 3 }}>
+      <Stack sx={{ flexGrow: 1}}>
         <Box>
           <Outlet />
         </Box>
