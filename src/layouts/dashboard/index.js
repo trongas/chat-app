@@ -15,7 +15,7 @@ const DashboardLayout = () => {
   const { onToggleMode } = useSettings();
 
   return (
-    <Stack direction="row" sx={{ height: "100vh" }}>
+    <Stack direction="row">
       {/* Sidebar */}
       <Box
         sx={{

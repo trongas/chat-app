@@ -10,6 +10,7 @@ import {
   Stack,
   Typography,
   alpha,
+  useTheme,
 } from "@mui/material";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import styled from "@emotion/styled";
@@ -57,12 +58,13 @@ const isValidUrl = (url) => {
 };
 
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         width: "100%",
         borderRadius: 1,
-        backgroundColor: "#fff",
+        backgroundColor: theme.palette.mode === "light" ? "#FFF" : theme.palette.background.default,
       }}
       p={1.4}
     >
@@ -103,7 +105,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.paper, 1),
+  backgroundColor: alpha(theme.palette.background.default, 1),
   marginLeft: 0,
   width: "100%",
 }));
@@ -127,6 +129,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Chats = () => {
+  const theme = useTheme();
   return (
     <div>
       <Box
@@ -134,7 +137,7 @@ const Chats = () => {
           position: "relative",
           height: "100vh",
           width: 320,
-          backgroundColor: "#F8FAFF",
+          backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
           boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.25)",
         }}
       >
@@ -170,7 +173,10 @@ const Chats = () => {
             </Stack>
             <Divider />
           </Stack>
-          <Box sx={{ flexGrow: 1, overflowY: "auto", height: "100%" }}>
+          <Stack
+            spacing={2}
+            sx={{ flexGrow: 1, overflowY: "auto", height: "100%" }}
+          >
             <SimpleBarStyle timeout={500} clickOnTrack>
               <Stack p={2} spacing={2.4}>
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
@@ -189,7 +195,7 @@ const Chats = () => {
                 ))}
               </Stack>
             </SimpleBarStyle>
-          </Box>
+          </Stack>
         </Stack>
       </Box>
     </div>
