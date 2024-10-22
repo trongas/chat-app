@@ -1,22 +1,27 @@
 import React from "react";
 import Chats from "./chats";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, useTheme } from "@mui/material";
 import Conversation from "../../components/Conversation";
 
 const GeneralApp = () => {
+  const theme = useTheme();
+
   return (
     <>
-      <Stack direction="row" sx={{width: "100%"}}>
+      <Stack direction="row" sx={{ width: "100%" }}>
         <Chats />
 
         <Box
           sx={{
             height: "100vh",
-            width: "calc(100vw - 420px)",
-            backgroundColor: "#fff",
+            width: "calc(100vw - 385px)",
+            backgroundColor:
+              theme.palette.mode === "light"
+                ? "#F0F4FA"
+                : theme.palette.background.paper,
           }}
         >
-          <Conversation/>
+          <Conversation />
         </Box>
       </Stack>
     </>

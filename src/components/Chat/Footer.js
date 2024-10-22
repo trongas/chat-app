@@ -83,8 +83,8 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                 display: openActions ? "inline-block" : "none",
               }}
             >
-              {Actions.map((el) => (
-                <Tooltip placement="right" title={el.title}>
+              {Actions.map((el, index) => (
+                <Tooltip key={index} placement="right" title={el.title}>
                   <Fab
                     onClick={() => {
                       setOpenActions(!openActions);
@@ -152,8 +152,8 @@ const Footer = () => {
         sx={{
           backgroundColor:
             theme.palette.mode === "light"
-              ? "#F8FAFF"
-              : theme.palette.background,
+              ? theme.palette.background.default
+              : theme.palette.background.paper,
           boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
         }}
       >
@@ -162,7 +162,7 @@ const Footer = () => {
             <Box
               style={{
                 zIndex: 10,
-                position: "fixed",
+                position: "absolute",
                 display: openPicker ? "inline" : "none",
                 bottom: 81,
                 right: isMobile
