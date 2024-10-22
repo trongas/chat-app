@@ -1,21 +1,42 @@
-import { Box, Stack, IconButton, Avatar, Divider } from '@mui/material';
-import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
+import {
+  Box,
+  Stack,
+  IconButton,
+  Avatar,
+  Divider,
+  MenuItem,
+  Menu,
+} from "@mui/material";
+import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "../../components/AntSwitch";
 import Logo from "../../assets/Images/logo.ico";
-import { Nav_Buttons } from "../../data";
+import { Nav_Buttons, Profile_Menu } from "../../data";
 import useSettings from "../../hooks/useSettings";
+import React from "react";
+
 const SideBar = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
-  const { onToggleMode } = useSettings( );
+  const { onToggleMode } = useSettings();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: "100vh",
         backgroundColor: theme.palette.background.default,
         boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
@@ -37,9 +58,9 @@ const SideBar = () => {
               width: 64,
               borderRadius: 1.5,
               mb: 4,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <img src={Logo} alt="Chat App Logo" />
@@ -125,7 +146,48 @@ const SideBar = () => {
               onToggleMode();
             }}
           />
-          <Avatar sx={{ mt: 5 }} src={faker.image.avatar()} />
+          <Avatar
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+            sx={{ mt: 5 }}
+            src={faker.image.avatar()}
+          />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <Stack spacing={1} px={1}>
+              {Profile_Menu.map((option, index) => (
+                <MenuItem key={index} onClick={handleClose}>
+                  <Stack
+                    sx={{ width: 100 }}
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <span>{option.title}</span>
+                    {option.icon}
+                  </Stack>
+                </MenuItem>
+              ))}
+            </Stack>
+          </Menu>
         </Stack>
       </Stack>
     </Box>
