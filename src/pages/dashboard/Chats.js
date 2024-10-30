@@ -47,16 +47,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const imageUrl = faker.image.avatar();
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
   const theme = useTheme();
   return (
@@ -83,11 +73,11 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               variant="dot"
             >
-              <Avatar src={isValidUrl(imageUrl) ? imageUrl : "./logo512.png"} />
+              <Avatar src={faker.image.animals()}/>
             </StyledBadge>
           ) : (
-            <Avatar src={isValidUrl(imageUrl) ? imageUrl : "./logo512.png"} />
-          )}
+            <Avatar src={faker.image.city()}/>
+            )}
 
           <Stack spacing={0.3}>
             <Typography variant="subtitle2">{name}</Typography>

@@ -16,6 +16,7 @@ const store = configureStore({
         }),
 });
 
+const {dispatch} = store;
 // Create a persistor for persisting the store
 const persistor = persistStore(store);
 
@@ -23,4 +24,4 @@ const persistor = persistStore(store);
 const useDispatch = useAppDispatch;
 const useSelector = useAppSelector;
 
-export { store, persistor, useDispatch, useSelector };
+export { store, persistor, useDispatch, useSelector, dispatch };

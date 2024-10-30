@@ -76,7 +76,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
       InputProps={{
         disableUnderline: true,
         startAdornment: (
-          <Stack sx={{ width: "max-content" }}>
+          <Stack position="start" sx={{ width: "max-content" }}>
             <Stack
               sx={{
                 position: "relative",
