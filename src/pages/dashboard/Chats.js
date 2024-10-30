@@ -64,7 +64,10 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
       sx={{
         width: "100%",
         borderRadius: 1,
-        backgroundColor: theme.palette.mode === "light" ? "#FFF" : theme.palette.background.default,
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#FFF"
+            : theme.palette.background.default,
       }}
       p={1.4}
     >
@@ -137,7 +140,10 @@ const Chats = () => {
           position: "relative",
           height: "100vh",
           width: 320,
-          backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+          backgroundColor:
+            theme.palette.mode === "light"
+              ? "#F8FAFF"
+              : theme.palette.background.paper,
           boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.25)",
         }}
       >
@@ -175,7 +181,25 @@ const Chats = () => {
           </Stack>
           <Stack
             spacing={2}
-            sx={{ flexGrow: 1, overflowY: "auto", height: "100%" }}
+            sx={{
+              flexGrow: 1,
+              overflowY: "hidden", // Start with hidden
+              height: "100%",
+              "&:hover": {
+                overflowY: "auto", // Show on hover
+              },
+              // Optional custom scrollbar styling
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#888",
+                borderRadius: "4px",
+              },
+              "&::-webkit-scrollbar-thumb:hover": {
+                backgroundColor: "#555",
+              },
+            }}
           >
             <SimpleBarStyle timeout={500} clickOnTrack>
               <Stack p={2} spacing={2.4}>

@@ -153,7 +153,7 @@ const SideBar = () => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             sx={{ mt: 5 }}
-            src={faker.image.avatar()}
+            src={faker.image.animals()}
           />
           <Menu
             id="basic-menu"

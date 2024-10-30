@@ -6,12 +6,33 @@ import Message from "./Message";
 
 const Conversation = () => {
   return (
-    <Stack height={"100%"} maxHeight={"100vh"} width={"auto"} >
+    <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}>
       {/* Chat header */}
       <ChatHeader />
       {/* Msg */}
-      <Box width={"100%"} sx={{ flexGrow: 1.4 , height: "100%" , overflowY: "scroll"}}>
-        <Message/>
+      <Box
+        width={"100%"}
+        sx={{
+          flexGrow: 1.4,
+          height: "100%",
+          overflowY: "hidden", // Start with hidden
+          "&:hover": {
+            overflowY: "scroll", // Show on hover
+          },
+          // Custom scrollbar styling (optional)
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#888",
+            borderRadius: "4px",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#555",
+          },
+        }}
+      >
+        <Message />
       </Box>
       {/* Chat Footer */}
       <Box

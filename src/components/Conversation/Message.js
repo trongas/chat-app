@@ -5,42 +5,40 @@ import { DocMsg, LinkMsg, MediaMsg, ReplyMsg, TextMsg, Timeline } from "./MsgTyp
 
 const Message = () => {
   return (
-    <Box p={3} >
-      <Stack spacing={3}
-            height="100%" 
+    <Box p={3}>
+      <Stack
+        spacing={3}
+        height="100%"
+        sx={{
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        {Chat_History.map((el, index) => {
+          const uniqueKey = `${el.id}-${index}`; // Generate a unique key
 
-            sx={{
-        overflowY: "auto", 
-        display: "flex", 
-        flexDirection: "column", 
-        justifyContent: "space-between"
-      }}>
-        {Chat_History.map((el) => {
           switch (el.type) {
             case "divider":
-              return <Timeline el={el} key={el.id} />;
+              return <Timeline el={el} key={uniqueKey} />;
 
             case "msg":
               switch (el.subtype) {
                 case "img":
-                  // Handle image message
-                  return <div key={el.id}><MediaMsg el={el}/></div>;
+                  return <div key={uniqueKey}><MediaMsg el={el} /></div>;
                 case "doc":
-                  // Handle document message
-                  return <div key={el.id}><DocMsg el={el}/></div>;
+                  return <div key={uniqueKey}><DocMsg el={el} /></div>;
                 case "link":
-                  // Handle link message
-                  return <div key={el.id}><LinkMsg el={el}/></div>;
+                  return <div key={uniqueKey}><LinkMsg el={el} /></div>;
                 case "reply":
-                  // Handle reply message
-                  return <div key={el.id}><ReplyMsg el={el}/></div>;
+                  return <div key={uniqueKey}><ReplyMsg el={el} /></div>;
                 default:
-                  // Default text message
-                  return <div key={el.id}><TextMsg el={el}/></div>;
+                  return <div key={uniqueKey}><TextMsg el={el} /></div>;
               }
 
             default:
-              return null; // Ensure something is returned
+              return null; // Optional: Add a unique key here if needed
           }
         })}
       </Stack>

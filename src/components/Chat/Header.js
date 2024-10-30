@@ -17,6 +17,8 @@ import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../../redux/slices/app";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -48,31 +50,26 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Conversation_Menu = [
-  {
-    title: "Contact info",
-  },
-  {
-    title: "Mute notifications",
-  },
-  {
-    title: "Clear messages",
-  },
-  {
-    title: "Delete chat",
-  },
+  { title: "Contact info" },
+  { title: "Mute notifications" },
+  { title: "Clear messages" },
+  { title: "Delete chat" },
 ];
 
 const ChatHeader = () => {
   const isMobile = useResponsive("between", "md", "xs", "sm");
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
+  const dispatch = useDispatch(); // Use useDispatch hook here
 
   const [conversationMenuAnchorEl, setConversationMenuAnchorEl] =
     React.useState(null);
   const openConversationMenu = Boolean(conversationMenuAnchorEl);
+
   const handleClickConversationMenu = (event) => {
     setConversationMenuAnchorEl(event.currentTarget);
   };
+
   const handleCloseConversationMenu = () => {
     setConversationMenuAnchorEl(null);
   };
@@ -95,6 +92,7 @@ const ChatHeader = () => {
       >
         <Stack
           onClick={() => {
+            dispatch(toggleSidebar()); // Correct usage of dispatch
             searchParams.set("open", true);
             setSearchParams(searchParams);
           }}
@@ -165,7 +163,7 @@ const ChatHeader = () => {
             <Box p={1}>
               <Stack spacing={1}>
                 {Conversation_Menu.map((el) => (
-                  <MenuItem onClick={handleCloseConversationMenu}>
+                  <MenuItem onClick={handleCloseConversationMenu} key={el.title}>
                     <Stack
                       sx={{ minWidth: 100 }}
                       direction="row"
@@ -173,7 +171,7 @@ const ChatHeader = () => {
                       justifyContent="space-between"
                     >
                       <span>{el.title}</span>
-                    </Stack>{" "}
+                    </Stack>
                   </MenuItem>
                 ))}
               </Stack>
