@@ -27,14 +27,17 @@ const Profile_Menu = [
 const Nav_Buttons = [
   {
     index: 0,
+    name : "",
     icon: <ChatCircleDots />,
   },
   {
     index: 1,
+    name : "user",
     icon: <Users />,
   },
   {
     index: 2,
+    name : "phone",
     icon: <Phone />,
   },
 ];
@@ -42,6 +45,7 @@ const Nav_Buttons = [
 const Nav_Setting = [
   {
     index: 3,
+    name: 'settings',
     icon: <GearSix />,
   },
 ];

@@ -9,6 +9,7 @@
     "@emoji-mart/react": "^1.0.1",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@hookform/resolvers": "^3.9.1",
     "@iconify/react": "^4.0.0",
     "@mui/material": "^5.10.8",
     "@react-buddy/ide-toolbox": "^2.4.0",
@@ -31,7 +32,8 @@
     "redux-persist": "^6.0.0",
     "simplebar-react": "^2.4.3",
     "stylis-plugin-rtl": "^2.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

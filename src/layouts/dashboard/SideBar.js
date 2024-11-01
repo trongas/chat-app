@@ -10,19 +10,21 @@ import {
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
-import { faker } from "@faker-js/faker";
 import AntSwitch from "../../components/AntSwitch";
 import Logo from "../../assets/Images/logo.ico";
 import { Nav_Buttons, Profile_Menu } from "../../data";
 import useSettings from "../../hooks/useSettings";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { faker } from "@faker-js/faker";
 
 const SideBar = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -49,7 +51,7 @@ const SideBar = () => {
         spacing={3}
       >
         {/* Top part of the sidebar */}
-        <Stack alignItems="center" spacing={4}>
+        <Stack alignItems="center" >
           {/* Logo */}
           <Box
             sx={{
@@ -73,68 +75,55 @@ const SideBar = () => {
             alignItems="center"
             spacing={3}
           >
-            {Nav_Buttons.map((el) =>
-              el.index === selected ? (
-                <Box
-                  key={el.index}
-                  p={1}
-                  sx={{
-                    backgroundColor: theme.palette.primary.main,
-                    borderRadius: 1.5,
-                  }}
-                >
-                  <IconButton
-                    sx={{ width: "max-content", color: "#fff" }}
-                    onClick={() => setSelected(el.index)}
-                  >
-                    {el.icon}
-                  </IconButton>
-                </Box>
-              ) : (
-                <IconButton
-                  key={el.index}
-                  sx={{
-                    width: "max-content",
-                    color:
-                      theme.palette.mode === "light"
-                        ? "#000"
-                        : theme.palette.text.primary,
-                  }}
-                  onClick={() => setSelected(el.index)}
-                >
-                  {el.icon}
-                </IconButton>
-              )
-            )}
-            <Divider sx={{ width: "80%" }} />
-
-            {/* Settings button */}
-            {selected === 3 ? (
+            {Nav_Buttons.map((el) => (
               <Box
+                key={el.index}
                 p={1}
                 sx={{
-                  backgroundColor: theme.palette.primary.main,
+                  backgroundColor:
+                    el.index === selected
+                      ? theme.palette.primary.main
+                      : "transparent",
                   borderRadius: 1.5,
                 }}
               >
-                <IconButton sx={{ width: "max-content", color: "#fff" }}>
-                  <Gear />
+                <IconButton
+                  onClick={() => {
+                    setSelected(el.index);
+                    navigate(el.name);
+                  }}
+                  sx={{
+                    width: "max-content",
+                    color: el.index === selected ? "#fff" : theme.palette.text.primary,
+                  }}
+                >
+                  {el.icon}
                 </IconButton>
               </Box>
-            ) : (
+            ))}
+            <Divider sx={{ width: "80%" }} />
+
+            {/* Settings button */}
+            <Box
+              p={1}
+              sx={{
+                backgroundColor: selected === 3 ? theme.palette.primary.main : "transparent",
+                borderRadius: 1.5,
+              }}
+            >
               <IconButton
+                onClick={() => {
+                  setSelected(3);
+                  navigate("/settings");
+                }}
                 sx={{
                   width: "max-content",
-                  color:
-                    theme.palette.mode === "light"
-                      ? "#000"
-                      : theme.palette.text.primary,
+                  color: selected === 3 ? "#fff" : theme.palette.text.primary,
                 }}
-                onClick={() => setSelected(3)}
               >
                 <Gear />
               </IconButton>
-            )}
+            </Box>
           </Stack>
         </Stack>
 
@@ -142,9 +131,7 @@ const SideBar = () => {
         <Stack sx={{ mt: 3 }}>
           <AntSwitch
             defaultChecked
-            onChange={() => {
-              onToggleMode();
-            }}
+            onChange={onToggleMode}
           />
           <Avatar
             id="basic-button"
@@ -153,7 +140,7 @@ const SideBar = () => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             sx={{ mt: 5 }}
-            src={faker.image.animals()}
+            src={faker.image.animals()} // or replace with a static URL for consistency
           />
           <Menu
             id="basic-menu"
@@ -174,7 +161,13 @@ const SideBar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((option, index) => (
-                <MenuItem key={index} onClick={handleClose}>
+                <MenuItem
+                  key={index}
+                  onClick={() => {
+                    handleClose();
+                    option.action && option.action();
+                  }}
+                >
                   <Stack
                     sx={{ width: 100 }}
                     direction="row"
