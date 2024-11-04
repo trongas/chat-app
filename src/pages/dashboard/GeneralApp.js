@@ -1,11 +1,11 @@
 import React from "react";
-import Chats from "./chats";
 import { Stack, Box, useTheme } from "@mui/material";
 import Conversation from "../../components/Conversation";
 import Contact from "../../components/Contact";
 import { useSelector } from "react-redux";
 import SharedMessage from "../../components/SharedMessage";
 import StarredMessage from "../../components/StarredMessage";
+import Chats from "./chats";
 
 const GeneralApp = () => {
   const theme = useTheme();

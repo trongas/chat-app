@@ -2,7 +2,7 @@ import { Link as RouterLink } from "react-router-dom";
 // sections
 import { Stack, Typography, Link } from "@mui/material";
 import AuthSocial from "../../sections/auth/AuthSocial";
-import Login from "../../sections/auth/LoginForm";
+import LoginForm from "../../sections/auth/LoginForm";
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ export default function LoginPage() {
         </Stack>
       </Stack>
       {/* Form */}
-      <Login />
+      <LoginForm />
 
       <AuthSocial />
     </>
