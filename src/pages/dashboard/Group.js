@@ -17,17 +17,17 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from "../../components/Search";
-import CreateGroupForm from "../../sections/dashboard/CreateGroup";
+import CreateGroup from "../../sections/Dashboard/CreateGroup";
 
 const Group = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
-  }
+  };
   const handleOpenDialog = () => {
     setOpenDialog(true);
-  }
+  };
   const theme = useTheme();
   return (
     <>
@@ -80,7 +80,27 @@ const Group = () => {
               </IconButton>
             </Stack>
             <Divider />
-            <Stack sx={{ flexGrow: 1, overflow: "scroll", height: "100%" }}>
+            <Stack
+              sx={{
+                flexGrow: 1,
+                overflowY: "hidden", // Start with hidden
+                height: "100%",
+                "&:hover": {
+                  overflowY: "auto", // Show on hover
+                },
+                // Optional custom scrollbar styling
+                "&::-webkit-scrollbar": {
+                  width: "8px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  backgroundColor: "#888",
+                  borderRadius: "4px",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  backgroundColor: "#555",
+                },
+              }}
+            >
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
                 <Stack spacing={2.4}>
                   <Typography variant="subtitle2" sx={{ color: "#676667" }}>
@@ -105,7 +125,9 @@ const Group = () => {
 
         {/* Right */}
       </Stack>
-      {openDialog && <CreateGroupForm open={openDialog} handleClose={handleCloseDialog} />}
+      {openDialog && (
+        <CreateGroup open={openDialog} handleClose={handleCloseDialog} />
+      )}
     </>
   );
 };
