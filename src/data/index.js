@@ -19,7 +19,7 @@ const Profile_Menu = [
     icon: <Gear />,
   },
   {
-    title: "Sign Out",
+    title: "Logout",
     icon: <SignOut />,
   },
 ];
@@ -37,7 +37,7 @@ const Nav_Buttons = [
   },
   {
     index: 2,
-    name : "phone",
+    name : "calls",
     icon: <Phone />,
   },
 ];
@@ -49,7 +49,6 @@ const Nav_Setting = [
     icon: <GearSix />,
   },
 ];
-
 const CallList = [
   {
     id: 0,
@@ -331,66 +330,7 @@ const Message_options = [
   },
 ];
 
-const Shared_docs = [
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "doc",
-    message: "Yes sure, here you go.",
-    incoming: true,
-    outgoing: false,
-  },
-];
-
-const Shared_links = [
+const SHARED_LINK = [
   {
     type: "msg",
     subtype: "link",
@@ -440,7 +380,43 @@ const Shared_links = [
     outgoing: false,
   },
 ];
-
+const SHARED_DOCS = [
+  {
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+];
 export {
   Profile_Menu,
   Nav_Setting,
@@ -448,7 +424,7 @@ export {
   ChatList,
   Chat_History,
   Message_options,
-  Shared_links,
-  Shared_docs,
-  CallList,
+  SHARED_LINK,
+  SHARED_DOCS,
+  CallList
 };
