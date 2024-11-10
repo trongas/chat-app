@@ -18,6 +18,25 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 
+const getPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/app";
+
+    case 1:
+      return "/group";
+
+    case 2:
+      return "/call";
+
+    case 3:
+      return "/settings";
+
+    default:
+      break;
+  }
+};
+
 const SideBar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -30,6 +49,11 @@ const SideBar = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleChangeTab = (index) => {
+    dispatch(UpdateTab({ tab: index }));
+    navigate(getPath(index));
+  };
+  const selectedTab = tab;
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -51,7 +75,7 @@ const SideBar = () => {
         spacing={3}
       >
         {/* Top part of the sidebar */}
-        <Stack alignItems="center" >
+        <Stack alignItems="center">
           {/* Logo */}
           <Box
             sx={{
@@ -75,39 +99,49 @@ const SideBar = () => {
             alignItems="center"
             spacing={3}
           >
-            {Nav_Buttons.map((el) => (
-              <Box
-                key={el.index}
-                p={1}
-                sx={{
-                  backgroundColor:
-                    el.index === selected
-                      ? theme.palette.primary.main
-                      : "transparent",
-                  borderRadius: 1.5,
-                }}
-              >
+             {Nav_Buttons.map((el) => {
+              return el.index == selectedTab ? (
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    borderRadius: 1.5,
+                  }}
+                  p={1}
+                >
+                  <IconButton
+                    onClick={() => {
+                      handleChangeTab(el.index);
+                    }}
+                    sx={{ width: "max-content", color: "#ffffff" }}
+                  >
+                    {el.icon}
+                  </IconButton>
+                </Box>
+              ) : (
                 <IconButton
                   onClick={() => {
-                    setSelected(el.index);
-                    navigate(el.name);
+                    handleChangeTab(el.index);
                   }}
                   sx={{
                     width: "max-content",
-                    color: el.index === selected ? "#fff" : theme.palette.text.primary,
+                    color:
+                      theme.palette.mode === "light"
+                        ? "#080707"
+                        : theme.palette.text.primary,
                   }}
                 >
                   {el.icon}
                 </IconButton>
-              </Box>
-            ))}
+              );
+            })}
             <Divider sx={{ width: "80%" }} />
 
             {/* Settings button */}
             <Box
               p={1}
               sx={{
-                backgroundColor: selected === 3 ? theme.palette.primary.main : "transparent",
+                backgroundColor:
+                  selected === 3 ? theme.palette.primary.main : "transparent",
                 borderRadius: 1.5,
               }}
             >
@@ -129,10 +163,7 @@ const SideBar = () => {
 
         {/* Bottom part: theme switcher and avatar */}
         <Stack sx={{ mt: 3 }}>
-          <AntSwitch
-            defaultChecked
-            onChange={onToggleMode}
-          />
+          <AntSwitch defaultChecked onChange={onToggleMode} />
           <Avatar
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
